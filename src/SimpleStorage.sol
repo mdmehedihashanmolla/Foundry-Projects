@@ -11,6 +11,7 @@ contract SimpleStorage {
         storedValue = _value;
         emit ValueChanged(_value);
     }
+
     function getValue() public view returns (uint256) {
         return storedValue;
     }

@@ -1,0 +1,7 @@
+CounterTest:testFuzz_SetNumber(uint256) (runs: 256, μ: 30966, ~: 31277)
+CounterTest:test_Increment() (gas: 31293)
+SimpleStorageTest:testEmitEvent() (gas: 32620)
+SimpleStorageTest:testRequireCondition() (gas: 8425)
+SimpleStorageTest:testRevertOnInvalidInput() (gas: 8359)
+SimpleStorageTest:testSetValue() (gas: 32259)
+SimpleStorageTest:test_Revert_When_ValueIsZero() (gas: 8402)
