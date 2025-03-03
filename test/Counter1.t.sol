@@ -6,6 +6,7 @@ import {Counter1} from "../src/Counter1.sol";
 
 contract Counter1Test is Test {
     Counter1 private counter;
+
     event Counter1Update(int256 newValue);
 
     function setUp() public {
@@ -59,7 +60,7 @@ contract Counter1Test is Test {
         assertEq(currentCounter, 2, "Counter should be decremented to 2");
     }
 
-    function testIncrementAndDecrement()public{
+    function testIncrementAndDecrement() public {
         counter.increment();
         counter.increment();
 
@@ -67,7 +68,5 @@ contract Counter1Test is Test {
 
         int256 currentCounter = counter.getCounter1();
         assertEq(currentCounter, 1, "Counter should be 1 after incrementing twice and decrementing once");
-
-    
     }
 }

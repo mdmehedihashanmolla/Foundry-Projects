@@ -46,7 +46,7 @@ contract StateVariablesTest is Test {
         vm.prank(alice);
         stateVariables.setValues(testNumber1, alice, testFlag1, testText1);
 
-        (uint256 number, address userAddress,bool flag, string memory text) = stateVariables.getValues();
+        (uint256 number, address userAddress, bool flag, string memory text) = stateVariables.getValues();
 
         assertEq(number, testNumber1, "Number should match Alice's Input");
         assertEq(userAddress, alice, "User address should match Alice");

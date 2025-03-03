@@ -16,6 +16,7 @@ contract Counter1 {
 
         emit Counter1Update(counter);
     }
+
     function getCounter1() public view returns (int256) {
         return counter;
     }
