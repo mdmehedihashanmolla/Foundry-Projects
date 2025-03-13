@@ -29,7 +29,7 @@ contract EventLoggerTest is Test {
         eventLogger.deposit{value: 1 ether}();
 
         // Check Alice's balance
-        uint aliceBalance = eventLogger.getBalance(alice);
+        uint256 aliceBalance = eventLogger.getBalance(alice);
         assertEq(aliceBalance, 1 ether);
     }
 
@@ -54,7 +54,7 @@ contract EventLoggerTest is Test {
         eventLogger.withdraw(0.5 ether);
 
         // Check Alice's balance after withdrawal
-        uint aliceBalance = eventLogger.getBalance(alice);
+        uint256 aliceBalance = eventLogger.getBalance(alice);
         assertEq(aliceBalance, 0.5 ether);
 
         // Expect the Withdrawn event to be emitted again
@@ -85,10 +85,10 @@ contract EventLoggerTest is Test {
         vm.prank(alice);
         vm.deal(alice, 1 ether);
         eventLogger.deposit{value: 1 ether}();
-        uint aliceBalance = eventLogger.getBalance(alice);
+        uint256 aliceBalance = eventLogger.getBalance(alice);
         assertEq(aliceBalance, 1 ether);
 
-        uint bobBalance = eventLogger.getBalance(bob);
+        uint256 bobBalance = eventLogger.getBalance(bob);
         assertEq(bobBalance, 0);
     }
 }
