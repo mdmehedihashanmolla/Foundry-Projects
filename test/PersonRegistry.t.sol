@@ -10,7 +10,7 @@ contract PersonRegistryTest is Test {
     address private alice = address(0x1);
     address private bob = address(0x2);
 
-    event PersonAdded(string name, uint age, address wallet);
+    event PersonAdded(string name, uint256 age, address wallet);
 
     function setUp() public {
         personRegistry = new PersonRegistry();
@@ -21,8 +21,7 @@ contract PersonRegistryTest is Test {
 
         personRegistry.addPerson("Alice", 25);
 
-        (string memory name, uint age, address wallet) = personRegistry
-            .getPerson(0);
+        (string memory name, uint256 age, address wallet) = personRegistry.getPerson(0);
         assertEq(name, "Alice");
         assertEq(age, 25);
         assertEq(wallet, alice);
@@ -35,6 +34,7 @@ contract PersonRegistryTest is Test {
 
         personRegistry.getPerson(0);
     }
+
     function testAddMultiplePerson() public {
         vm.prank(alice);
         personRegistry.addPerson("Alice", 25);
@@ -43,18 +43,13 @@ contract PersonRegistryTest is Test {
         personRegistry.addPerson("Bob", 30);
         assertEq(personRegistry.getTotalPersons(), 2);
 
-        (
-            string memory aliceName,
-            uint aliceAge,
-            address aliceWallet
-        ) = personRegistry.getPerson(0);
+        (string memory aliceName, uint256 aliceAge, address aliceWallet) = personRegistry.getPerson(0);
 
         assertEq(aliceName, "Alice");
         assertEq(aliceAge, 25);
         assertEq(aliceWallet, alice);
 
-        (string memory bobName, uint bobAge, address bobWallet) = personRegistry
-            .getPerson(1);
+        (string memory bobName, uint256 bobAge, address bobWallet) = personRegistry.getPerson(1);
 
         assertEq(bobName, "Bob");
         assertEq(bobAge, 30);
