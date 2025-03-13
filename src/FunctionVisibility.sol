@@ -1,24 +1,45 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
 
-contract FallbackExample {
-    mapping(address => uint) private balances;
+contract FunctionVisibility {
+    string public publicMessage = "Public Function Called";
+    string private privateMessage = "Private Function Called";
+    string internal internalMessage = "Internal Function Called";
 
-    event Received(address indexed sender, uint amount);
-
-    // Function to receive Ether when msg.data is empty
-    receive() external payable {
-        balances[msg.sender] += msg.value;
-        emit Received(msg.sender, msg.value);
+    // Public function - accessible from anywhere
+    function publicFunction() public pure returns (string memory) {
+        return "Public Function";
     }
 
-    // Fallback function to accept Ether when msg.data is not empty
-    fallback() external payable {
-        balances[msg.sender] += msg.value;
-        emit Received(msg.sender, msg.value);
+    // Private function - accessible only within this contract
+    function privateFunction() private pure returns (string memory) {
+        return "Private Function";
     }
 
-    function getBalance(address _user) external view returns (uint) {
-        return balances[_user];
+    // Internal function - accessible within this contract and derived contracts
+    function internalFunction() internal pure returns (string memory) {
+        return "Internal Function";
+    }
+
+    // External function - accessible only from outside the contract
+    function externalFunction() external pure returns (string memory) {
+        return "External Function";
+    }
+
+    // Testing private function (called internally)
+    function testPrivateFunction() public pure returns (string memory) {
+        return privateFunction();
+    }
+
+    // Testing internal function (called internally)
+    function testInternalFunction() public pure returns (string memory) {
+        return internalFunction();
+    }
+}
+
+// Contract to test `internal` function behavior
+contract DerivedContract is FunctionVisibility {
+    function callInternalFunction() public pure returns (string memory) {
+        return internalFunction();
     }
 }
