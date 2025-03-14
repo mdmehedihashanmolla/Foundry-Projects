@@ -14,6 +14,7 @@ contract KillSwitchContract {
         require(msg.sender == owner, "Only owner can execute this");
         _;
     }
+
     modifier contractActive() {
         require(!isDisabled, "Contract is disabled");
         _;
@@ -25,8 +26,10 @@ contract KillSwitchContract {
         isDisabled = true;
         _receipient.transfer(address(this).balance);
     }
+
     function someFunction() public contractActive {}
-    function getBalance() public view returns (uint) {
+
+    function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
 }

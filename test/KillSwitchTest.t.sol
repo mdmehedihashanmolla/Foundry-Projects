@@ -19,12 +19,14 @@ contract KillSwitchContractTest is Test {
         address contractOwner = killSwitchContract.owner();
         assertEq(contractOwner, owner);
     }
+
     function testDisabledInitialState() public view {
         bool isDisabled = killSwitchContract.isDisabled();
         assertEq(isDisabled, false);
     }
+
     function testDisabledContract() public {
-        uint amount = 1 ether;
+        uint256 amount = 1 ether;
         vm.deal(address(killSwitchContract), amount);
 
         assertEq(killSwitchContract.getBalance(), amount);
@@ -39,6 +41,7 @@ contract KillSwitchContractTest is Test {
 
         assertEq(recipient.balance, amount);
     }
+
     function testDisableContractNotOwner() public {
         address attacker = address(0x9999);
 
@@ -46,9 +49,11 @@ contract KillSwitchContractTest is Test {
         vm.expectRevert("Only owner can execute this");
         killSwitchContract.disableContract(payable(recipient));
     }
+
     function testSomeFunctionWhenActive() public {
         killSwitchContract.someFunction();
     }
+
     function testSomeFunctionWhenDisabled() public {
         vm.prank(owner);
         killSwitchContract.disableContract(payable(recipient));
@@ -58,13 +63,13 @@ contract KillSwitchContractTest is Test {
     }
 
     function testReceiveEther() public {
-        uint amount = 1 ether;
+        uint256 amount = 1 ether;
         vm.deal(address(killSwitchContract), amount);
         assertEq(killSwitchContract.getBalance(), amount);
     }
 
     function testGetBalance() public {
-        uint amount = 1 ether;
+        uint256 amount = 1 ether;
         vm.deal(address(killSwitchContract), amount);
         assertEq(killSwitchContract.getBalance(), amount);
     }

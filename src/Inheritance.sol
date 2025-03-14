@@ -7,19 +7,20 @@ contract Parent {
     constructor(string memory _name) {
         name = _name;
     }
+
     function getName() public view returns (string memory) {
         return name;
     }
 }
 
 contract Child is Parent {
-    uint public age;
+    uint256 public age;
 
-    constructor(string memory _name, uint _age) Parent(_name) {
+    constructor(string memory _name, uint256 _age) Parent(_name) {
         age = _age;
     }
 
-    function getAge() public view returns (uint) {
+    function getAge() public view returns (uint256) {
         return age;
     }
 }

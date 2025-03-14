@@ -25,7 +25,7 @@ contract ParentChildTest is Test {
     }
 
     function testChildAge() public view {
-        uint age = child.getAge();
+        uint256 age = child.getAge();
         assertEq(age, 10);
     }
 }

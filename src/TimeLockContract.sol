@@ -5,17 +5,14 @@ contract TimeLockContract {
     address public owner;
     uint256 public unlockTime;
 
-    event FundsDeposited(
-        address indexed sender,
-        uint256 amount,
-        uint256 unlockTime
-    );
+    event FundsDeposited(address indexed sender, uint256 amount, uint256 unlockTime);
     event FundsWithdrawn(address indexed owner, uint256 amount);
 
     constructor(uint256 _lockDuration) {
         owner = msg.sender;
         unlockTime = block.timestamp + _lockDuration; // Lock period in seconds
     }
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
         _;

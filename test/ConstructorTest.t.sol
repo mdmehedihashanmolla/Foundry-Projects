@@ -18,14 +18,17 @@ contract ConstructorExampleTest is Test {
         address contractOwner = constructorExample.getOwner();
         assertEq(contractOwner, owner);
     }
+
     function testContractName() public view {
         string memory contractName = constructorExample.getContractName();
         assertEq(contractName, "TestContract");
     }
+
     function testOwnerStateVariable() public view {
         address contractOwner = constructorExample.owner();
         assertEq(contractOwner, owner);
     }
+
     function testContractNameStateVariable() public view {
         string memory contractName = constructorExample.contractName();
         assertEq(contractName, "TestContract");
