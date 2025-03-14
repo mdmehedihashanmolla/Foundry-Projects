@@ -16,7 +16,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test public function
-    function testPublicFunction() public {
+    function testPublicFunction() public view {
         string memory result = functionVisibility.publicFunction();
         assertEq(
             result,
@@ -26,7 +26,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test public message
-    function testPublicMessage() public {
+    function testPublicMessage() public view {
         string memory result = functionVisibility.publicMessage();
         assertEq(
             result,
@@ -36,7 +36,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test private function via internal test function
-    function testPrivateFunction() public {
+    function testPrivateFunction() public view {
         string memory result = functionVisibility.testPrivateFunction();
         assertEq(
             result,
@@ -46,7 +46,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test internal function via internal test function
-    function testInternalFunction() public {
+    function testInternalFunction() public view {
         string memory result = functionVisibility.testInternalFunction();
         assertEq(
             result,
@@ -56,7 +56,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test internal function in derived contract
-    function testInternalFunctionInDerivedContract() public {
+    function testInternalFunctionInDerivedContract() public view {
         string memory result = derivedContract.callInternalFunction();
         assertEq(
             result,
@@ -66,7 +66,7 @@ contract FunctionVisibilityTest is Test {
     }
 
     // Test external function
-    function testExternalFunction() public {
+    function testExternalFunction() public view {
         // External functions can only be called from outside the contract
         string memory result = functionVisibility.externalFunction();
         assertEq(
