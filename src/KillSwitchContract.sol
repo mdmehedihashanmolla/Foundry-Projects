@@ -11,7 +11,7 @@ contract KillSwitchContract {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can execute this ");
+        require(msg.sender == owner, "Only owner can execute this");
         _;
     }
     modifier contractActive() {
